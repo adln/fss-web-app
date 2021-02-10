@@ -9279,6 +9279,14 @@ ra-core@^3.12.1:
     query-string "^5.1.1"
     reselect "~3.0.0"
 
+ra-data-json-server@^3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/ra-data-json-server/-/ra-data-json-server-3.12.1.tgz#eadf8d48935aa5dbe6cbb9a9e827561e32d56186"
+  integrity sha512-A8VfyFGlUHaj2Mm3CFrRa/okCy75mod1Ve1F6kyqt+RDJhVWGU150Dd1kwxOuKs9NtOXFgiaGIR8VwVEJwRQFg==
+  dependencies:
+    query-string "^5.1.1"
+    ra-core "^3.12.1"
+
 ra-i18n-polyglot@^3.12.1:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/ra-i18n-polyglot/-/ra-i18n-polyglot-3.12.1.tgz#7ce7974923127d355c2812afb436ac5f53b039ae"
@@ -9291,6 +9299,13 @@ ra-language-english@^3.12.1:
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/ra-language-english/-/ra-language-english-3.12.1.tgz#42fbe4ec584b3d4bc4d67518a45e86f2455fc189"
   integrity sha512-cX0EmbLO/KB1uec3tokHe3qcmKHpQvU0ZfMQNKD0m7VMKJLWBZ8d3RijxQqBOQRK2a2EtAFc5mGmtUAiWcdFgA==
+  dependencies:
+    ra-core "^3.12.1"
+
+ra-language-french@^3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/ra-language-french/-/ra-language-french-3.12.1.tgz#47c3c904066c0d39608477f41681ba129f99d693"
+  integrity sha512-GQ8jrKSewOg48Wkag/qYxxX2F7vEsgSZ6NbFZs3gtLMC2JZwI98Np6B49sx1zfnMCDBX4NbiU4EYoRh4I0vGzQ==
   dependencies:
     ra-core "^3.12.1"
 
