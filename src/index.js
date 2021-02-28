@@ -9,14 +9,20 @@ import HOST from './helpers/HOST';
 // Language
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import frenchMessages from 'ra-language-french';
+import evenements from './Views/Evenements';
+import sites from './Views/Sites';
+import agents from './Views/Agents';
+import users from './Views/Users';
 
 // Start code
 const i18nProvider = polyglotI18nProvider(() => frenchMessages, 'fr');
 
 ReactDOM.render(
 	<Admin i18nProvider={i18nProvider} dataProvider={jsonServerProvider(HOST.URL)}>
-		<Resource name="users" list={ListGuesser}/>
-		<Resource name="agents" list={ListGuesser}/>
+		<Resource name="evenements" {...evenements}/>
+		<Resource name="sites" {...sites}/>
+		<Resource name="agents" {...agents}/>
+		<Resource name="users" {...users}/>
 	</Admin>,
 	document.getElementById('root')
 );
