@@ -2,27 +2,64 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import { Admin, ListGuesser, Resource } from 'react-admin';
+import { Admin, Resource } from 'react-admin';
 import jsonServerProvider from 'ra-data-json-server';
 // Load Local Variables
 import HOST from './helpers/HOST';
 // Language
 import polyglotI18nProvider from 'ra-i18n-polyglot';
-import frenchMessages from 'ra-language-french';
+import customFrenchMessages from './i18n/fr';
 import evenements from './Views/Evenements';
 import sites from './Views/Sites';
 import agents from './Views/Agents';
 import users from './Views/Users';
+import notes from './Views/Notes';
+import vacations from './Views/Vacations';
+import Layout from './layout/Layout';
+
+const dataProvider = jsonServerProvider(HOST.URL);
+
+const convertFileToBase64 = (file) =>
+	new Promise((resolve, reject) => {
+		const reader = new FileReader();
+		reader.onload = () => resolve(reader.result);
+		reader.onerror = reject;
+
+		reader.readAsDataURL(file.rawFile);
+	});
+
+const myDataProvider = {
+	...dataProvider,
+	create: (resource, params) => {
+		if (!params.data.logo) {
+			console.log('No logo', params.data.logo);
+			return dataProvider.create(resource, params);
+		}
+
+		return Promise.all([convertFileToBase64(params.data.logo)]).then(base64=>base64[0]).then((transformedLogo) => {
+			return dataProvider.create(resource, {
+				...params,
+				data: {
+					...params.data,
+					logo: transformedLogo
+				}
+			});
+		});
+	}
+};
 
 // Start code
-const i18nProvider = polyglotI18nProvider(() => frenchMessages, 'fr');
+const i18nProvider = polyglotI18nProvider(() => customFrenchMessages, 'fr');
 
 ReactDOM.render(
-	<Admin i18nProvider={i18nProvider} dataProvider={jsonServerProvider(HOST.URL)}>
-		<Resource name="evenements" {...evenements}/>
-		<Resource name="sites" {...sites}/>
-		<Resource name="agents" {...agents}/>
-		<Resource name="users" {...users}/>
+	<Admin i18nProvider={i18nProvider} layout={Layout} dataProvider={myDataProvider}>
+		<Resource name="evenements" {...evenements} />
+		<Resource name="sites" {...sites} />
+		<Resource name="agents" {...agents} />
+		<Resource name="vacations" {...vacations} />
+		<Resource name="users" {...users} />
+		<Resource name="notes" {...notes} />
+		
 	</Admin>,
 	document.getElementById('root')
 );

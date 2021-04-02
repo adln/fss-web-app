@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, FunctionField, Filter, TextInput } from 'react-admin';
+import { List, Datagrid, TextField, FunctionField, Filter, TextInput, ReferenceField } from 'react-admin';
 export const AgentList = (props) => (
 	<List
 		{...props}
@@ -9,10 +9,13 @@ export const AgentList = (props) => (
 			</Filter>
 		}
 	>
-		<Datagrid rowClick="edit">
+		<Datagrid rowClick="show">
 			<FunctionField render={(record) => record.nom + ' ' + record.prenom} label="Nom complet" />
 			<TextField source="telephone1" />
 			<TextField source="adresse" />
+			<ReferenceField label="Site" source="site_id" reference="sites">
+				<TextField source="nom" />
+			</ReferenceField>
 		</Datagrid>
 	</List>
 );

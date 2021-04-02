@@ -1,8 +1,8 @@
 import React from 'react';
 import { Edit, SelectInput, SimpleForm, TextInput } from 'react-admin';
 import { TitleEditUsers } from './_partials/Title';
-import {AccountInput} from './Create';
-export const UserEdit = (props) => (
+import {VacationInput} from './Create';
+export const VacationEdit = (props) => (
 	<Edit {...props} title={<TitleEditUsers />}>
 		<SimpleForm>
 			<SelectInput
@@ -13,7 +13,7 @@ export const UserEdit = (props) => (
 					{ id: 'client', name: 'Client' }
 				]}
 			/>
-      <AccountInput source="linked_account" label="Compte lié" />
+      <VacationInput source="linked_account" label="Compte lié" />
       
 			<TextInput source="username" />
 			<TextInput source="id" disabled />

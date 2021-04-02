@@ -5,11 +5,6 @@ import {
 	DateField,
 	FunctionField,
 	ReferenceField,
-	
-	
-	
-	
-	
 	AutocompleteInput,
 	Filter,
 	TextInput,
@@ -17,12 +12,7 @@ import {
 	ReferenceArrayInput
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
-import {  Box, Typography } from '@material-ui/core';
-
-
-
-
-
+import { Box, Typography } from '@material-ui/core';
 
 const EventPanel = ({ id, record, resource }) => (
 	<Box>
@@ -42,11 +32,6 @@ const EventPanel = ({ id, record, resource }) => (
 	</Box>
 );
 
-
-
-
-
-
 const EventsFilter = (props) => (
 	<Filter {...props}>
 		<TextInput label="Recherche" source="q" alwaysOn />
@@ -59,8 +44,7 @@ const EventsFilter = (props) => (
 	</Filter>
 );
 
-export const EvenementList = (props) => {
-	
+export const NotesList = (props) => {
 	return (
 		<List perPage={20} filters={<EventsFilter />} {...props}>
 			<Datagrid rowClick="show" optimized expand={EventPanel}>
@@ -85,5 +69,3 @@ export const EvenementList = (props) => {
 		</List>
 	);
 };
-
-

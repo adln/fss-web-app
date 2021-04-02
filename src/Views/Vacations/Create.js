@@ -10,7 +10,7 @@ import {
 	useDataProvider
 } from 'react-admin';
 import { useFormState } from 'react-final-form';
-export const AccountInput = (props) => {
+export const VacationInput = (props) => {
 	const dataProvider = useDataProvider();
 	const [data, setData] = useState([]);
 	const { values } = useFormState();
@@ -64,7 +64,7 @@ export const AccountInput = (props) => {
 
 
 
-export const UserCreate = (props) => (
+export const VacationCreate = (props) => (
 	<Create {...props}>
 		<SimpleForm>
 			<SelectInput
@@ -76,7 +76,7 @@ export const UserCreate = (props) => (
 				]}
 			/>
 
-			<AccountInput source="linked_account" label="Compte lié" />
+			<VacationInput source="linked_account" label="Compte lié" />
 			<TextInput source="username" label="Nom d'utilisateur" />
 			<TextInput source="password" label="Mot de passe" />
 			<TextInput source="id" disabled />

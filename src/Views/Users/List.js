@@ -1,12 +1,28 @@
 import React from 'react';
-import { List, Datagrid, TextField, ArrayField, ChipField, SingleFieldList } from 'react-admin';
-import ListField from '../../helpers/ListField';
+import {
+	Filter,
+	List,
+	TextInput
+} from 'react-admin';
+import { TabbedDatagrid } from './_partials/TabbedDatagrid';
+import withStyles from '@material-ui/core/styles/withStyles';
+const filterStyles = {
+	status: { width: 150 },
+};
+const UsersFilter = withStyles(filterStyles)(({ classes, ...props }) => (
+	<Filter {...props}>
+			<TextInput label="Recherche" source="q" alwaysOn />
+	</Filter>
+));
 
 export const UserList = (props) => (
-	<List {...props}>
-		<Datagrid rowClick="edit">
-			<TextField source="username" />
-			<ListField source="roles"/>
-		</Datagrid>
+	<List
+		{...props}
+		filterDefaultValues={{ role: 'admin' }}
+		sort={{ field: 'nom', order: 'DESC' }}
+		perPage={25}
+		filters={<UsersFilter />}
+	>
+		<TabbedDatagrid />
 	</List>
 );

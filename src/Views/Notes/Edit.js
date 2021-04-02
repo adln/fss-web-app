@@ -1,7 +1,7 @@
 import React from 'react';
 import { Edit, SimpleForm, TextInput, SelectInput, ReferenceInput } from 'react-admin';
 
-export const EvenementEdit = (props) => (
+export const NotesEdit = (props) => (
 	<Edit {...props}>
 		<SimpleForm>
 			<TextInput source="type" />
