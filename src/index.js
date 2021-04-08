@@ -16,6 +16,9 @@ import users from './Views/Users';
 import notes from './Views/Notes';
 import vacations from './Views/Vacations';
 import Layout from './layout/Layout';
+import { SnackbarProvider } from 'notistack';
+import Socket from './helpers/Socket';
+import Dashboard from './Views/Dashboard';
 
 const dataProvider = jsonServerProvider(HOST.URL);
 
@@ -52,7 +55,8 @@ const myDataProvider = {
 const i18nProvider = polyglotI18nProvider(() => customFrenchMessages, 'fr');
 
 ReactDOM.render(
-	<Admin i18nProvider={i18nProvider} layout={Layout} dataProvider={myDataProvider}>
+	<>
+	<Admin i18nProvider={i18nProvider} layout={Layout} dataProvider={myDataProvider} dashboard={Dashboard}>
 		<Resource name="evenements" {...evenements} />
 		<Resource name="sites" {...sites} />
 		<Resource name="agents" {...agents} />
@@ -60,7 +64,11 @@ ReactDOM.render(
 		<Resource name="users" {...users} />
 		<Resource name="notes" {...notes} />
 		
-	</Admin>,
+	</Admin>
+	<SnackbarProvider>
+		<Socket />
+	</SnackbarProvider>
+	</>,
 	document.getElementById('root')
 );
 
