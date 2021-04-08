@@ -35,7 +35,7 @@ const ConfigurationMenu = forwardRef((props, ref) => {
 
 const CustomUserMenu = (props) => (
 	<UserMenu {...props}>
-		<ConfigurationMenu />
+		
 	</UserMenu>
 );
 
