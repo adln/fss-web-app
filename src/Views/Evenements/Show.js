@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import { Show, SimpleShowLayout, Link, useQuery, Loading, Error } from 'react-admin';
 import { linkToRecord } from 'react-admin';
+import moment from 'moment';
 // import { Link } from 'react-router-dom';
 const ShowView = ({ record, ...props }) => {
 	const agentData = useQuery({
@@ -76,6 +77,14 @@ const ShowView = ({ record, ...props }) => {
 					<TableContainer component={Paper}>
 						<Table>
 							<TableBody>
+								<TableRow>
+									<TableCell align="center" colSpan={2}>
+										<Typography variant="caption">Créé à {moment(record.createdAt).fromNow() }</Typography>
+										<Typography variant="h5" style={{ textTransform: 'capitalize' }}>
+											{moment(record.createdAt).format('HH:mm:ss [le] DD/MM/YYYY') }
+										</Typography>
+									</TableCell>
+								</TableRow>
 								<TableRow>
 									<TableCell align="center" colSpan={2}>
 										<Typography variant="caption">Type d'événement</Typography>

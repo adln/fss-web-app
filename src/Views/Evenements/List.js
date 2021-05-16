@@ -5,11 +5,6 @@ import {
 	DateField,
 	FunctionField,
 	ReferenceField,
-	
-	
-	
-	
-	
 	AutocompleteInput,
 	Filter,
 	TextInput,
@@ -17,12 +12,7 @@ import {
 	ReferenceArrayInput
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
-import {  Box, Typography } from '@material-ui/core';
-
-
-
-
-
+import { Box, Typography } from '@material-ui/core';
 
 const EventPanel = ({ id, record, resource }) => (
 	<Box>
@@ -42,11 +32,6 @@ const EventPanel = ({ id, record, resource }) => (
 	</Box>
 );
 
-
-
-
-
-
 const EventsFilter = (props) => (
 	<Filter {...props}>
 		<TextInput label="Recherche" source="q" alwaysOn />
@@ -60,7 +45,6 @@ const EventsFilter = (props) => (
 );
 
 export const EvenementList = (props) => {
-	
 	return (
 		<List perPage={20} filters={<EventsFilter />} {...props}>
 			<Datagrid rowClick="show" optimized expand={EventPanel}>
@@ -73,11 +57,11 @@ export const EvenementList = (props) => {
 						);
 					}}
 				/>
-				<DateField source="createdAt" showTime locales="fr-FR" label="Créé à" />
+				<DateField source="createdAt" showTime locales="fr-FR" label="Créé à" link="show"/>
 				<ReferenceField label="Site" source="site_id" reference="sites">
 					<TextField source="nom" />
 				</ReferenceField>
-				<ReferenceField label="Agent" source="agent_id" reference="agents">
+				<ReferenceField label="Agent" source="agent_id" reference="agents" link="show">
 					<FunctionField label="Agent" render={(record) => record.nom + ' ' + record.prenom} />
 				</ReferenceField>
 				<TextField source="type" />
@@ -85,5 +69,3 @@ export const EvenementList = (props) => {
 		</List>
 	);
 };
-
-

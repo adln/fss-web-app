@@ -78,7 +78,7 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
                 sidebarIsOpen={open}
                 dense={dense}
             />
-            {logout}
+            {/* {logout} */}
         </Box>
     );
 };

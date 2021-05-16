@@ -30,7 +30,7 @@ export class TabbedDatagrid extends Component {
 		return (
 			<Fragment>
 				<Tabs
-					fullWidth
+					
           variant="fullWidth"
 					style={{justifyContent: 'space-evenly'}}
 					value={filterValues.role}
@@ -49,19 +49,19 @@ export class TabbedDatagrid extends Component {
 								<Datagrid {...props} ids={this.state['ordered']} rowClick="show">
 									<TextField source="username" />
 									<TextField source="role" />
-									<ReferenceField label="Compte Site" source="linked_account" reference="sites">
+									<ReferenceField label="Compte Site" source="linked_account" reference="sites" link="show">
 										<TextField source="nom" />
 									</ReferenceField>
-									<ReferenceField label="Compte Agent" source="linked_account" reference="agents">
+									<ReferenceField label="Compte Agent" source="linked_account" reference="agents" link="show">
 										<FunctionField render={(record) => record.nom + ' ' + record.prenom} />
 									</ReferenceField>
 								</Datagrid>
 							)}
 							{filterValues.role === 'agent' && (
-								<Datagrid {...props} ids={this.state['delivered']} rowClick="show">
+								<Datagrid {...props} ids={this.state['delivered']} rowClick="show" >
 									<TextField source="username" />
 									<TextField source="role" />
-									<ReferenceField label="Agent lié" source="linked_account" reference="agents">
+									<ReferenceField label="Agent lié" source="linked_account" reference="agents" link="show">
 										<FunctionField render={(record) => record.nom + ' ' + record.prenom} />
 									</ReferenceField>
 								</Datagrid>
@@ -70,7 +70,7 @@ export class TabbedDatagrid extends Component {
 								<Datagrid {...props} ids={this.state['cancelled']} rowClick="show">
 									<TextField source="username" />
 									<TextField source="role" />
-									<ReferenceField label="Site lié" source="linked_account" reference="sites">
+									<ReferenceField label="Site lié" source="linked_account" reference="sites" link="show">
 										<TextField source="nom" />
 									</ReferenceField>
 								</Datagrid>

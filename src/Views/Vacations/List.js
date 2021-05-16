@@ -17,7 +17,7 @@ export const VacationList = (props) => (
 	<List
 		{...props}
 		filterDefaultValues={{ role: 'admin' }}
-		sort={{ field: 'nom', order: 'DESC' }}
+		sort={{ field: 'fin', order: 'DESC' }}
 		perPage={25}
 		filters={<VacationFilter />}
 	>

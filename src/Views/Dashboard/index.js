@@ -10,12 +10,13 @@ import {
 	TableBody,
 	TableCell,
 	TableRow,
-	Chip
+	Chip,
+	Button
 } from '@material-ui/core';
 import HOST from '../../helpers/HOST';
 import axios from 'axios';
 import moment from 'moment';
-import {Button} from 'react-admin';
+
 import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
 import { linkToRecord } from 'ra-core';
 import { Link } from 'ra-ui-materialui';
@@ -76,7 +77,7 @@ export default function Dashboard() {
 			})
 			.catch((err) => setVacationEnCours('ERR'));
 	};
-	const loadSitesNames = (evenements) =>{
+	const loadSitesNames = (evenements) => {
 		let ids = [];
 		let uri = '?';
 		evenements.map((evenement) => {
@@ -92,7 +93,7 @@ export default function Dashboard() {
 			}));
 			setLastTenEvents(new_evenements);
 		});
-	}
+	};
 	const getTenLastVacation = () => {
 		axios.get(HOST.URL + '/vacations?_sort=debut&_order=DESC&_start=0&_end=9').then(({ status, data }) => {
 			// setLastTenVacation(data);
@@ -171,10 +172,12 @@ export default function Dashboard() {
 										last_ten_vacation.map((vacation) => (
 											<TableRow key={vacation.id}>
 												<TableCell>
-													{vacation.agent && <Link to={linkToRecord('/agents', vacation.agent.id, 'show')}>
-													{vacation.agent && vacation.agent.nom + ' ' + vacation.agent.prenom}
-													</Link>}
-													
+													{vacation.agent && (
+														<Link to={linkToRecord('/agents', vacation.agent.id, 'show')}>
+															{vacation.agent &&
+																vacation.agent.nom + ' ' + vacation.agent.prenom}
+														</Link>
+													)}
 												</TableCell>
 												<TableCell>
 													{vacation.debut &&
@@ -194,7 +197,7 @@ export default function Dashboard() {
 														<a
 															target="_blank"
 															rel="noreferrer"
-															href={`https://www.google.com/maps/search/?api=1&query=${vacation.geolocation_start.coords.latitude},${vacation.geolocation_start.coords.longitude}`}
+															href={`https://www.google.com/maps/search/?api=1&query=${vacation.geolocation_end.coords.latitude},${vacation.geolocation_end.coords.longitude}`}
 														>
 															<LocationOnOutlined />
 														</a>
@@ -210,7 +213,7 @@ export default function Dashboard() {
 					</Card>
 				</Grid>
 				<Grid item xs={6}>
-				<Card>
+					<Card>
 						<CardContent>
 							<Typography variant="subtitle1">10 dérniérs événements</Typography>
 							<Table>
@@ -219,26 +222,23 @@ export default function Dashboard() {
 										<TableCell>Site</TableCell>
 										<TableCell>Type</TableCell>
 										<TableCell>Temps</TableCell>
-										
 									</TableRow>
 								</TableHead>
 								<TableBody>
 									{last_ten_events &&
 										last_ten_events.map((event) => (
-											<TableRow key={event.id} style={{backgroundColor: event.urgent ? '#fcdbdb' : 'default'}}>
-												
-												<TableCell>
-													{event.site.nom}
-												</TableCell>
-												
-												<TableCell>
-													{event.type.toUpperCase()}
-												</TableCell>
-												<TableCell>
-													{moment(event.createdAt).fromNow()}
-												</TableCell>
-												<TableCell>
-												<Button to={linkToRecord('/evenements', event.id, 'show')}>Afficher</Button>
+											<TableRow
+												key={event.id}
+												style={{ backgroundColor: event.urgent ? '#f44336' : 'default' }}
+											>
+												<TableCell style={{color: event.urgent ? '#FFF' : 'default'}}>{event.site.nom}</TableCell>
+
+												<TableCell style={{color: event.urgent ? '#FFF' : 'default'}}>{event.type.toUpperCase()}</TableCell>
+												<TableCell style={{color: event.urgent ? '#FFF' : 'default'}}>{moment(event.createdAt).fromNow()}</TableCell>
+												<TableCell style={{color: event.urgent ? '#FFF' : 'default'}}>
+													<Link to={linkToRecord('/evenements', event.id, 'show')}>
+														<Button>Afficher</Button>
+													</Link>
 												</TableCell>
 											</TableRow>
 										))}

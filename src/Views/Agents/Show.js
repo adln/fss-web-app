@@ -20,7 +20,9 @@ export const AgentShow = (props) => (
 				<TextField source="nom" />
 				<TextField source="prenom" />
 				<TextField source="adresse" />
-				<TextField source="telephone1" />
+				<FunctionField label="Téléphone 1" render={(record)=><a href={"tel:" + record.telephone1}>{record.telephone1}</a>} />
+				<FunctionField label="Téléphone 2" render={(record)=><a href={"tel:" + record.telephone2}>{record.telephone2}</a>} />
+				
 				<TextField source="telephone2" />
 				<ReferenceField label="Site" source="site_id" reference="sites">
 					<TextField source="nom" />
@@ -28,6 +30,7 @@ export const AgentShow = (props) => (
 				<TextField source="id" />
 			</Tab>
 			<Tab label="Vacations">
+				{/* modifier affichage derniéres en premier */}
 				<ReferenceManyField target="agent_id" reference="vacations" addLabel={false}>
 					<Datagrid>
 						<ReferenceField source="agent_id" reference="agents">

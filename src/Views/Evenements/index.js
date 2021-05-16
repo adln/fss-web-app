@@ -8,7 +8,7 @@ import Flag from '@material-ui/icons/Flag'
 
 const evenements = {
   list: EvenementList,
-  edit: EvenementEdit,
+  // edit: EvenementEdit,
   show: EvenementShow,
   create: EvenementCreate,
   icon: Event,

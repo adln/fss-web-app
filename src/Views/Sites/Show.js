@@ -14,7 +14,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { ColorField } from 'react-admin-color-input';
 import moment from 'moment';
 
-const ShowView = ({ record, ...props }) => {
+const ShowView = ({ hasShow, record, ...props }) => {
 	return (
 		<Grid container spacing={4}>
 			<Grid item xs={6} spacing={2} container>
@@ -43,8 +43,8 @@ const ShowView = ({ record, ...props }) => {
 	);
 };
 
-export const SiteShow = (props) => (
-	<Show {...props} title={<TitleShowSites />}>
+export const SiteShow = ({hasShow, ...props}) => (
+	<Show hasShow {...props} title={<TitleShowSites />}>
 		<TabbedShowLayout>
 			<Tab label="Informations">
 				<ShowView />

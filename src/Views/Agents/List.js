@@ -4,7 +4,7 @@ export const AgentList = (props) => (
 	<List
 		{...props}
 		filters={
-			<Filter {...props}>
+			<Filter>
 				<TextInput label="Recherche" source="q" alwaysOn />
 			</Filter>
 		}
