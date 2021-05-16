@@ -9,7 +9,10 @@ import {
 	Filter,
 	TextInput,
 	List,
-	ReferenceArrayInput
+	ReferenceArrayInput,
+	SelectInput,
+	SelectArrayInput,
+	AutocompleteArrayInput
 } from 'react-admin';
 import Chip from '@material-ui/core/Chip';
 import { Box, Typography } from '@material-ui/core';
@@ -35,11 +38,11 @@ const EventPanel = ({ id, record, resource }) => (
 const EventsFilter = (props) => (
 	<Filter {...props}>
 		<TextInput label="Recherche" source="q" alwaysOn />
-		<ReferenceArrayInput label="Site" source="site_id" reference="sites" alwaysOn>
-			<AutocompleteInput optionText="nom" alwaysOn outline />
+		<ReferenceArrayInput label="Site" source="site_id" reference="sites" alwaysOn >
+			<AutocompleteArrayInput optionText="nom" outline />
 		</ReferenceArrayInput>
-		<ReferenceArrayInput label="Agent" source="agent_id" reference="agents" alwaysOn>
-			<AutocompleteInput optionText={(record) => record.nom && record.nom + ' ' + record.prenom} alwaysOn />
+		<ReferenceArrayInput label="Agent" source="agent_id" reference="agents" alwaysOn>s
+			<AutocompleteArrayInput optionText={(record) => record.nom && record.nom + ' ' + record.prenom} />
 		</ReferenceArrayInput>
 	</Filter>
 );
@@ -47,7 +50,9 @@ const EventsFilter = (props) => (
 export const EvenementList = (props) => {
 	return (
 		<List perPage={20} filters={<EventsFilter />} {...props}>
-			<Datagrid rowClick="show" optimized expand={EventPanel}>
+			<Datagrid rowClick="show" optimized 
+			expand={EventPanel}
+			>
 				<FunctionField
 					render={(record) => {
 						return record.urgent ? (
@@ -57,7 +62,7 @@ export const EvenementList = (props) => {
 						);
 					}}
 				/>
-				<DateField source="createdAt" showTime locales="fr-FR" label="Créé à" link="show"/>
+				<DateField source="createdAt" showTime locales="fr-FR" label="Créé à" link="show" />
 				<ReferenceField label="Site" source="site_id" reference="sites">
 					<TextField source="nom" />
 				</ReferenceField>
