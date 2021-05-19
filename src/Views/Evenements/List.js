@@ -41,7 +41,7 @@ const EventsFilter = (props) => (
 		<ReferenceArrayInput label="Site" source="site_id" reference="sites" alwaysOn >
 			<AutocompleteArrayInput optionText="nom" outline />
 		</ReferenceArrayInput>
-		<ReferenceArrayInput label="Agent" source="agent_id" reference="agents" alwaysOn>s
+		<ReferenceArrayInput label="Agent" source="agent_id" reference="agents" alwaysOn>
 			<AutocompleteArrayInput optionText={(record) => record.nom && record.nom + ' ' + record.prenom} />
 		</ReferenceArrayInput>
 	</Filter>

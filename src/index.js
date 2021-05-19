@@ -46,19 +46,23 @@ const myDataProvider = {
 			console.log('No logo', params.data.logo);
 			return dataProvider.create(resource, params);
 		}
-		console.log('HERE UPDATE');
-
-		return Promise.all([convertFileToBase64(params.data.logo)])
-			.then((base64) => base64[0])
-			.then((transformedLogo) => {
-				return dataProvider.create(resource, {
-					...params,
-					data: {
-						...params.data,
-						logo: transformedLogo
-					}
+		console.log('HERE UPDATEs');
+		if (params.data.logo.split(':')[0] && params.data.logo.split(':')[0] === 'data') {
+			console.log(params)
+			return dataProvider.update(resource, params);
+		} else {
+			return Promise.all([convertFileToBase64(params.data.logo)])
+				.then((base64) => base64[0])
+				.then((transformedLogo) => {
+					return dataProvider.create(resource, {
+						...params,
+						data: {
+							...params.data,
+							logo: transformedLogo
+						}
+					});
 				});
-			});
+		}
 	},
 	create: (resource, params) => {
 		if (!params.data.logo) {
