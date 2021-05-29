@@ -49,7 +49,7 @@ const EventsFilter = (props) => (
 
 export const EvenementList = (props) => {
 	return (
-		<List perPage={20} filters={<EventsFilter />} {...props}>
+		<List perPage={20} sort={{ field: 'createdAt', order: 'DESC' }} filters={<EventsFilter />} {...props}>
 			<Datagrid rowClick="show" optimized 
 			expand={EventPanel}
 			>
