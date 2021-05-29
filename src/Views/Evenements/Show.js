@@ -15,6 +15,7 @@ import {
 import { Show, SimpleShowLayout, Link, useQuery, Loading, Error } from 'react-admin';
 import { linkToRecord } from 'react-admin';
 import moment from 'moment';
+import ReactPlayer from 'react-player';
 // import { Link } from 'react-router-dom';
 const ShowView = ({ record, ...props }) => {
 	const agentData = useQuery({
@@ -64,11 +65,37 @@ const ShowView = ({ record, ...props }) => {
 					</Typography>
 				</Grid>
 				<Grid item xs={12}>
-					{!!record.photos &&
-						!!record.photos.length &&
-						record.photos.map((photo, index) => {
-							return <img src={photo} height={300} key={index} alt="Photos de l'événements"/>;
-						})}
+					{!!record.photos && !!record.photos.length ? (
+						<div>
+							<Typography variant="h5">{record.photos && record.photos.length} Photos:</Typography>
+							{record.photos.map((photo, index) => {
+								return (
+									<img
+										src={photo}
+										style={{ margin: 10 }}
+										height={300}
+										key={index}
+										alt="Photos de l'événements"
+									/>
+								);
+							})}
+						</div>
+					) : (
+						''
+					)}
+
+					{!!record.videos && !!record.videos.length ? (
+						<div>
+							<Typography variant="h5">{record.videos && record.videos.length} Vidéos:</Typography>
+							<div style={{display: 'flex'}}>
+							{record.videos.map((video, index) => {
+								return <ReactPlayer controls url={video} width={300} style={{ margin: 10 }} />;
+							})}
+							</div>
+						</div>
+					) : (
+						''
+					)}
 				</Grid>
 			</Grid>
 			{/* Side bar */}
@@ -79,9 +106,11 @@ const ShowView = ({ record, ...props }) => {
 							<TableBody>
 								<TableRow>
 									<TableCell align="center" colSpan={2}>
-										<Typography variant="caption">Créé à {moment(record.createdAt).fromNow() }</Typography>
+										<Typography variant="caption">
+											Créé à {moment(record.createdAt).fromNow()}
+										</Typography>
 										<Typography variant="h5" style={{ textTransform: 'capitalize' }}>
-											{moment(record.createdAt).format('HH:mm:ss [le] DD/MM/YYYY') }
+											{moment(record.createdAt).format('HH:mm:ss [le] DD/MM/YYYY')}
 										</Typography>
 									</TableCell>
 								</TableRow>
