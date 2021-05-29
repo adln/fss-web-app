@@ -18,16 +18,17 @@ function Socket(props) {
 	});
 
 	socket.on('NEW_EVENT', function (data) {
-		enqueueSnackbar(moment(data).fromNow() + ' - Nouvel événement arrivé', {
+		
+		enqueueSnackbar(moment(data.date).fromNow() + ' - Nouvel événement arrivé', {
 			variant: 'success',
 			anchorOrigin: {
 				vertical: 'bottom',
 				horizontal: 'right'
 			},
-			action: (data) => {
-				console.log(data);
+			action: () => {
+				
 				return (
-					<Button href="#/evenements" variant="text">
+					<Button href={"#/evenements/" + data.obj._id + '/show'} variant="text">
 						Afficher
 					</Button>
 				);
